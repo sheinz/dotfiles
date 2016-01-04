@@ -69,3 +69,6 @@ sudo apt-get -y install vim
 # Tmux
 sudo apt-get install -y tmux
 wget https://raw.githubusercontent.com/sheinz/my-configs/master/tmux/tmux.conf -O ~/.tmux.conf
+
+# xclip for tmux. Allows tmux to use system clipboard
+sudo apt-get install -y xclip
