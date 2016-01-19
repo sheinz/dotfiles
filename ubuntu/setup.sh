@@ -10,6 +10,9 @@ echo "Installing gui diff tool meld"
 sudo apt-get -y install meld
 
 echo "Installing vim"
+# Python3 support in VIM
+sudo apt-add-repository ppa:pi-rho/dev
+sudo apt-get update
 sudo apt-get -y install vim
 sudo apt-get -y install vim-gnome
 sudo apt-get -y install vim-youcompleteme
@@ -17,11 +20,11 @@ vam install youcompleteme
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Configure VIM
-wget https://raw.githubusercontent.com/sheinz/my-configs/master/vim/vimrc -O ~/.vimrc
-wget https://raw.githubusercontent.com/sheinz/my-configs/master/vim/myvimrc-common.vim -O ~/.vim/myvimrc-common.vim
-wget https://raw.githubusercontent.com/sheinz/my-configs/master/vim/myvimrc-python.vim -O ~/.vim/myvimrc-python.vim
-wget https://raw.githubusercontent.com/sheinz/my-configs/master/vim/myvimrc-cpp.vim -O ~/.vim/myvimrc-cpp.vim
-wget https://raw.githubusercontent.com/sheinz/my-configs/master/vim/myvimrc-java.vim -O ~/.vim/myvimrc-java.vim
+wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/vimrc -O ~/.vimrc
+wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/myvimrc-common.vim -O ~/.vim/myvimrc-common.vim
+wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/myvimrc-python.vim -O ~/.vim/myvimrc-python.vim
+wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/myvimrc-cpp.vim -O ~/.vim/myvimrc-cpp.vim
+wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/myvimrc-java.vim -O ~/.vim/myvimrc-java.vim
 mv ~/.vim/plugin/youcompleteme.vim ~/.vim/youcompleteme.vim
 wget https://raw.githubusercontent.com/vim-scripts/a.vim/master/plugin/a.vim -O ~/.vim/plugin/a.vim
 # YankRing for vim
@@ -29,11 +32,11 @@ wget http://www.vim.org/scripts/download_script.php?src_id=23487 -O /tmp/yankrin
 unzip /tmp/yankring.zip -d ~/.vim/
 
 echo "Configuring GIT"
-sudo wget https://raw.githubusercontent.com/wmanley/git-meld/master/git-meld.pl -O /usr/local/bin/git-meld.pl
-sudo chmod a+x /usr/local/bin/git-meld.pl
-git config --global alias.meld '!/usr/local/bin/git-meld.pl'
+git config --global diff.tool meld
+git config --global alias.meld 'difftool -d'
 git config --global alias.st status
 git config --global alias.logg 'log --graph --decorate --oneline --abbrev-commit --all'
+git config --global push.default simple
 
 # Franca IDL syntax for VIM
 #mkdir -p ~/.vim/syntax
@@ -44,7 +47,7 @@ git config --global alias.logg 'log --graph --decorate --oneline --abbrev-commit
 sudo apt-get install -y trash-cli
 
 # Configure bashrc
-wget https://raw.githubusercontent.com/sheinz/my-configs/master/vim/myvimrc-cpp.vim -O /tmp/bashrc
+wget https://raw.githubusercontent.com/sheinz/dotfiles/master/ubuntu/bashrc -O /tmp/bashrc
 cat /tmp/bashrc >> ~/.bashrc
 
 # build-essentials for program build
@@ -56,19 +59,15 @@ cd /tmp/universal-ctags
 git clone https://github.com/universal-ctags/ctags.git
 cd ctags
 sudo apt-get install -y autoconf
-autoreconf -vfi
+./autogen.sh
 ./configure
 make
 sudo make install
 
-# Python3 support in VIM
-sudo apt-add-repository ppa:pi-rho/dev
-sudo apt-get update
-sudo apt-get -y install vim
 
 # Tmux
 sudo apt-get install -y tmux
-wget https://raw.githubusercontent.com/sheinz/my-configs/master/tmux/tmux.conf -O ~/.tmux.conf
+wget https://raw.githubusercontent.com/sheinz/dotfiles/master/tmux/tmux.conf -O ~/.tmux.conf
 
 # xclip for tmux. Allows tmux to use system clipboard
 sudo apt-get install -y xclip
