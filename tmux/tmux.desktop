@@ -1,0 +1,10 @@
+[esktop Entry]
+Version=1.0
+Name=tmux
+GenericName=tmux
+Exec=xfce4-terminal --maximize -x tmux new-session -A -s default \; split-window -h
+Icon=/usr/share/icons/tmux/tmux.png
+Terminal=false
+Type=Application
+Categories=System;TerminalEmulator;
+StartupNotify=true
