@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Name=p4v
+Comment=Perforce client
+Icon=/usr/local/share/p4v/p4v.png
+Exec=p4v
+StartupNotify=false
+StartupWMClass=P4V
+OnlyShowIn=Unity;
+X-UnityGenerated=true
