@@ -30,6 +30,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'christoomey/vim-tmux-navigator'
 " Automatic closing bracket
 Plugin 'jiangmiao/auto-pairs'
+" Perforce integration
+Plugin 'nfvs/vim-perforce'
 call vundle#end()
 
 set nocompatible
@@ -50,6 +52,9 @@ set expandtab
 
 " Make backspace act normaly
 set backspace=indent,eol,start
+
+" Show statusline even if only one window is open
+set laststatus=2
 
 " Show trailing whitepace
 autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
