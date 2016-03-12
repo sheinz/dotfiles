@@ -21,7 +21,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 "Plugin 'solarnz/thrift.vim'
-Plugin 'dkprice/vim-easygrep'
+" Plugin 'dkprice/vim-easygrep'
 " Markdown plugin for README.md files
 " Plugin 'suan/vim-instant-markdown'
 " Comment plugin
@@ -109,6 +109,9 @@ else
   " Vim now also uses the selection system clipboard for default yank/paste.
   set clipboard+=unnamed
 endif
+
+" Grep a word under cursor in the current directory
+:nnoremap gr :grep -Rw <cword> *<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Clipboard                               "
