@@ -6,6 +6,8 @@ source ~/.vim/myvimrc-common.vim
 map <C-h> :A<CR>
 nmap <C-g> "fyiw:A<CR>/<C-r>f<CR>
 
+" search path for source/header switching
+let g:alternateSearchPath = 'sfr:./private,sfr:..,../src,sfr:../include,sfr:../inc'
 
 " map <F5> :!run.cmd<CR>
 " For polaris build project
