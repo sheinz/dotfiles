@@ -15,12 +15,16 @@ map <F5> :!./build.sh HOST<CR>
 map <F6> :!./build.sh HOST TEST<CR>
 map <F7> :!./build.sh HOST CLEAN<CR>
 
-nnoremap <Leader>d :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>k :YcmCompleter GetDoc<CR>
+nnoremap <leader>t :YcmCompleter GetType<CR>
+nnoremap <leader>i :YcmCompleter GoToInclude<CR>
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_global_ycm_extra_conf = '/usr/local/share/ycm/ycm_extra_conf.py'
 
 " Disable tab as completion key
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 
-
-source ~/.vim/youcompleteme.vim
+set makeprg=~/make_master.sh

@@ -5,6 +5,7 @@ call vundle#begin()
 " let Vundle manage Vundle
 " required!
 Plugin 'gmarik/Vundle.vim'
+Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 Plugin 'klen/python-mode'
 Plugin 'tpope/vim-fugitive'
@@ -139,7 +140,7 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 ctrlp                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ctrlp_map = '<leader>t'
+let g:ctrlp_map = '<C-m>'
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
