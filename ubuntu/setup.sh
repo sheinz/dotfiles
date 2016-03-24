@@ -15,21 +15,11 @@ sudo apt-add-repository ppa:pi-rho/dev
 sudo apt-get update
 sudo apt-get -y install vim
 sudo apt-get -y install vim-gnome
-sudo apt-get -y install vim-youcompleteme
-vam install youcompleteme
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 # Configure VIM
 wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/vimrc -O ~/.vimrc
-wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/myvimrc-common.vim -O ~/.vim/myvimrc-common.vim
-wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/myvimrc-python.vim -O ~/.vim/myvimrc-python.vim
-wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/myvimrc-cpp.vim -O ~/.vim/myvimrc-cpp.vim
-wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/myvimrc-java.vim -O ~/.vim/myvimrc-java.vim
-mv ~/.vim/plugin/youcompleteme.vim ~/.vim/youcompleteme.vim
-wget https://raw.githubusercontent.com/vim-scripts/a.vim/master/plugin/a.vim -O ~/.vim/plugin/a.vim
-# YankRing for vim
-wget http://www.vim.org/scripts/download_script.php?src_id=23487 -O /tmp/yankring.zip
-unzip /tmp/yankring.zip -d ~/.vim/
+wget https://raw.githubusercontent.com/sheinz/dotfiles/master/vim/vimrc -O ~/.vimrc
 
 echo "Configuring GIT"
 git config --global diff.tool meld

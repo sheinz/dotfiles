@@ -1,10 +1,2 @@
-alias make="make -j8"
 
-alias rm=trash
-
-alias vim-py="vim -u ~/.vim/myvimrc-python.vim"
-alias vim-cpp="vim -u ~/.vim/myvimrc-cpp.vim"
-alias vim-java="vim -u ~/.vim/myvimrc-java.vim"
-alias gvim-py="gvim -u ~/.vim/myvimrc-python.vim"
-alias gvim-cpp="gvim -u ~/.vim/myvimrc-cpp.vim"
-alias gvim-java="gvim -u ~/.vim/myvimrc-java.vim"
+alias vimpy='vim --cmd "let python3_support=\"y\""'
