@@ -19,7 +19,8 @@ Plugin 'klen/python-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'majutsushi/tagbar'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -43,7 +44,7 @@ map <F2> :NERDTreeToggle<CR>
 map <F3> :TagbarToggle<CR>
 
 " Display buffers and select 
-nmap <C-b> :buffers<CR>:buffer<Space>
+" nmap <C-b> :buffers<CR>:buffer<Space>
 " Delete current buffer and go to the next one
 nmap ]d :bnext<CR>:bdelete #<CR>
 
@@ -51,6 +52,7 @@ nmap ]d :bnext<CR>:bdelete #<CR>
 set tabstop=4
 set shiftwidth=4
 set expandtab
+set colorcolumn=80
 
 " Make backspace act normaly
 set backspace=indent,eol,start
@@ -63,7 +65,7 @@ autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 command CheckSpaces match ExtraWhitespace /\s\+$/
 
 " Check spelling for English
-command CheckSpell setlocal spell spelllang=en_us
+command CheckSpell setlocal spell! spelllang=en_us
 
 " Look for tag def in a "tags" file in the dir of the current file, then for
 " that same file in every folder above the folder of the current file, until the
@@ -139,6 +141,15 @@ endfunction
 "                                 ctrlp                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = '<C-m>'
+nmap <C-b> :CtrlPBuffer<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 Airline                                 "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:airline_theme='term'
+let g:airline_detect_spell=1
+let g:airline_powerline_fonts=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,7 +186,7 @@ syntax on
 colorscheme desert
 if has('gui_running')
     if has("gui_gtk2")
-        set guifont=Ubuntu\ Mono\ 11
+        set guifont=Ubuntu\ Mono\ derivative\ powerline\ 12
         set guioptions-=m  " Remove menu bar
         set guioptions-=T  " Remove toolbar
     else
