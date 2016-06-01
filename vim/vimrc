@@ -219,8 +219,6 @@ let g:ycm_key_list_previous_completion=[]
 autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
 autocmd FileType cpp nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
 
-set makeprg=~/tools/make_master.sh
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Python mode                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
