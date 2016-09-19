@@ -35,6 +35,8 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'nfvs/vim-perforce'
 Plugin 'vim-scripts/a.vim'
 Plugin 'vim-scripts/YankRing.vim'
+Plugin 'solarnz/thrift.vim'
+Plugin 'jtratner/vim-flavored-markdown'
 call vundle#end()
 
 set nocompatible
@@ -109,6 +111,7 @@ endif
 
 " Grep a word under cursor in the current directory
 :nnoremap gr :grep -Rw <cword> *<CR>
+set grepprg=grep\ -Rn
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Clipboard                               "
@@ -178,6 +181,8 @@ function! YRRunAfterMaps()
     nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
 endfunction
 
+"fix for yankring and neovim
+let g:yankring_clipboard_monitor=0
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Color Scheme                              "
@@ -218,6 +223,8 @@ let g:ycm_key_list_previous_completion=[]
 
 autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
 autocmd FileType cpp nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
+
+" set makeprg=~/tools/make_master.sh
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Python mode                               "
@@ -275,3 +282,7 @@ autocmd CompleteDone * pclose
 
 " Do not fold by default
 set nofoldenable
+
+" In the quickfix window, <CR> is used to jump to the error under the
+" cursor, so undefine the mapping there.
+autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
