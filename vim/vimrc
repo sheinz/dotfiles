@@ -1,7 +1,7 @@
 set nocompatible
 
 " Enable python3 support only if the variable is passed as command line
-if exists('python3_support') 
+if exists('python3_support')
     py3 3
 endif
 
@@ -11,7 +11,7 @@ call vundle#begin()
 " let Vundle manage Vundle
 " required!
 Plugin 'gmarik/Vundle.vim'
-if !exists('python3_support') 
+if !exists('python3_support')
    Plugin 'Valloric/YouCompleteMe'
 endif
 Plugin 'scrooloose/nerdtree'
@@ -45,7 +45,7 @@ filetype plugin indent on
 map <F2> :NERDTreeToggle<CR>
 map <F3> :TagbarToggle<CR>
 
-" Display buffers and select 
+" Display buffers and select
 " nmap <C-b> :buffers<CR>:buffer<Space>
 " Delete current buffer and go to the next one
 nmap ]d :bnext<CR>:bdelete #<CR>
@@ -62,9 +62,16 @@ set backspace=indent,eol,start
 " Show statusline even if only one window is open
 set laststatus=2
 
+" Show both relative numbers and absolute number
+set relativenumber
+set number
+
+let mapleader=" "
+
 " Show trailing whitepace
-autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-command CheckSpaces match ExtraWhitespace /\s\+$/
+" autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+" command CheckSpaces match ExtraWhitespace /\s\+$/
+" command RemoveTrailingSpaces %s/\s\+$//g
 
 " Check spelling for English
 command CheckSpell setlocal spell! spelllang=en_us
@@ -81,9 +88,9 @@ command GenCtags !ctags -R --exclude=".git"
 set hidden
 
 " case insensitive searching
-set ignorecase          
+set ignorecase
 " but become case sensitive if you type uppercase characters
-set smartcase      
+set smartcase
 
 " Enhanced tab complition of command line arguments
 set wildmenu
@@ -112,6 +119,14 @@ endif
 " Grep a word under cursor in the current directory
 :nnoremap gr :grep -Rw <cword> *<CR>
 set grepprg=grep\ -Rn
+
+" Remove trailing whitespaces
+autocmd BufWrite * :call RemoveTrailingSpaces()
+function! RemoveTrailingSpaces()
+    execute "normal mz"
+    %s/\s\+$//ge
+    execute "normal `z"
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Clipboard                               "
@@ -152,7 +167,6 @@ nmap <C-b> :CtrlPBuffer<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:airline_theme='term'
 let g:airline_detect_spell=1
-let g:airline_powerline_fonts=1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -282,7 +296,3 @@ autocmd CompleteDone * pclose
 
 " Do not fold by default
 set nofoldenable
-
-" In the quickfix window, <CR> is used to jump to the error under the
-" cursor, so undefine the mapping there.
-autocmd BufReadPost quickfix nnoremap <buffer> <CR> <CR>
