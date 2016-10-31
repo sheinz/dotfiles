@@ -12,7 +12,6 @@ call vundle#begin()
 " required!
 Plugin 'gmarik/Vundle.vim'
 if !has("win32unix")
-    echom "just a message"
     if !exists('python3_support')
        Plugin 'Valloric/YouCompleteMe'
     endif
