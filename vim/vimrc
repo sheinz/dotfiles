@@ -11,8 +11,11 @@ call vundle#begin()
 " let Vundle manage Vundle
 " required!
 Plugin 'gmarik/Vundle.vim'
-if !exists('python3_support')
-   Plugin 'Valloric/YouCompleteMe'
+if !has("win32unix")
+    echom "just a message"
+    if !exists('python3_support')
+       Plugin 'Valloric/YouCompleteMe'
+    endif
 endif
 Plugin 'scrooloose/nerdtree'
 Plugin 'klen/python-mode'
@@ -35,8 +38,8 @@ Plugin 'jiangmiao/auto-pairs'
 Plugin 'nfvs/vim-perforce'
 Plugin 'vim-scripts/a.vim'
 Plugin 'vim-scripts/YankRing.vim'
-Plugin 'solarnz/thrift.vim'
-Plugin 'jtratner/vim-flavored-markdown'
+" Plugin 'solarnz/thrift.vim'
+" Plugin 'jtratner/vim-flavored-markdown'
 call vundle#end()
 
 set nocompatible
@@ -44,6 +47,11 @@ filetype plugin indent on
 
 map <F2> :NERDTreeToggle<CR>
 map <F3> :TagbarToggle<CR>
+if has("win32unix")
+    let g:NERDTreeDirArrows=0
+    let g:NERDTreeWinSize=50
+endif
+
 
 " Display buffers and select
 " nmap <C-b> :buffers<CR>:buffer<Space>
@@ -67,6 +75,7 @@ set relativenumber
 set number
 
 let mapleader=" "
+set timeoutlen=300
 
 " Show trailing whitepace
 " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -154,7 +163,6 @@ function! AutoHighlightToggle()
   endif
 endfunction
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 ctrlp                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -176,7 +184,7 @@ let g:airline_detect_spell=1
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsListSnippets = "<leader>s"
+let g:UltiSnipsListSnippets = "<leader><tab>"
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -236,10 +244,11 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 
-autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
-autocmd FileType cpp nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
 
-" set makeprg=~/tools/make_master.sh
+if !has("win32unix")
+    autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
+    autocmd FileType cpp nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Python mode                               "
@@ -297,3 +306,11 @@ autocmd CompleteDone * pclose
 
 " Do not fold by default
 set nofoldenable
+
+if has("win32unix")
+    " Block cursor in cygwin
+    let &t_ti.="\e[1 q"
+    let &t_SI.="\e[5 q"
+    let &t_EI.="\e[1 q"
+    let &t_te.="\e[0 q"
+endif
