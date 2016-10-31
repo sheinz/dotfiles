@@ -45,8 +45,8 @@ call vundle#end()
 set nocompatible
 filetype plugin indent on
 
-map <F2> :NERDTreeToggle<CR>
-map <F3> :TagbarToggle<CR>
+nnoremap <F2> :NERDTreeToggle<CR>
+nnoremap <F3> :TagbarToggle<CR>
 if has("win32unix")
     let g:NERDTreeDirArrows=0
     let g:NERDTreeWinSize=50
@@ -56,7 +56,7 @@ endif
 " Display buffers and select
 " nmap <C-b> :buffers<CR>:buffer<Space>
 " Delete current buffer and go to the next one
-nmap ]d :bnext<CR>:bdelete #<CR>
+nnoremap ]d :bnext<CR>:bdelete #<CR>
 
 " General indentation settings
 set tabstop=4
@@ -74,8 +74,9 @@ set laststatus=2
 set relativenumber
 set number
 
-let mapleader=" "
-set timeoutlen=300
+" Change leader key and specify timeout for it
+let mapleader=","
+set timeoutlen=500
 
 " Show trailing whitepace
 " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
@@ -126,7 +127,7 @@ else
 endif
 
 " Grep a word under cursor in the current directory
-:nnoremap gr :grep -Rw <cword> *<CR>
+nnoremap gr :grep -Rw <cword> *<CR>
 set grepprg=grep\ -Rn
 
 " Remove trailing whitespaces
@@ -136,6 +137,9 @@ function! RemoveTrailingSpaces()
     %s/\s\+$//ge
     execute "normal `z"
 endfunction
+
+" Open my vimrc in a split
+:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Clipboard                               "
@@ -227,8 +231,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               Cpp configuratin (YCM)                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <C-h> :A<CR>
-nmap <C-g> "fyiw:A<CR>/<C-r>f<CR>
+nnoremap <C-h> :A<CR>
+nnoremap <C-g> "fyiw:A<CR>/<C-r>f<CR>
 
 " search path for source/header switching
 let g:alternateSearchPath = 'sfr:./private,sfr:..,../src,sfr:../include,sfr:../inc'
