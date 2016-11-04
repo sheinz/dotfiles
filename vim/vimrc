@@ -66,6 +66,9 @@ set colorcolumn=80
 " Make backspace act normaly
 set backspace=indent,eol,start
 
+" Load project specific vimrc file
+set exrc
+
 " Show statusline even if only one window is open
 set laststatus=2
 
@@ -177,9 +180,23 @@ nnoremap <leader>b :CtrlPBuffer<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 Airline                                 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:airline_theme='term'
-let g:airline_detect_spell=1
-
+let g:airline_theme = 'molokai'
+let g:airline_detect_spell = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#tab_nr_type = 1 " display tab number
+" show tabline only if more then one tab is open
+let g:airline#extensions#tabline#tab_min_count = 0
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+nnoremap <leader>6 6gt
+nnoremap <leader>7 7gt
+nnoremap <leader>8 8gt
+nnoremap <leader>9 9gt
+nnoremap <leader>n :tabnew<cr>
+nnoremap <leader>c :tabclose<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 UltiSnips                               "
@@ -317,3 +334,6 @@ if has("win32unix")
     let &t_EI.="\e[1 q"
     let &t_te.="\e[0 q"
 endif
+
+" Prevent unsafe commands from running in project specific vimrc
+set secure
