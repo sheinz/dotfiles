@@ -173,6 +173,8 @@ endfunction
 "                                 ctrlp                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ctrlp_map = '<leader>p'
+" Jump to already opened window only if it is in the current tab.
+let g:ctrlp_switch_buffer = 'et'
 nnoremap <c-b> :CtrlPBuffer<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
 
@@ -186,6 +188,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#tab_nr_type = 1 " display tab number
 " show tabline only if more then one tab is open
 let g:airline#extensions#tabline#tab_min_count = 0
+let g:airline#extensions#tabline#buffer_min_count = 2
+let g:airline#extensions#tabline#show_close_button = 0
+" To use powerline fonts inastall them from https://github.com/powerline/fonts
+let g:airline_powerline_fonts=1
 nnoremap <leader>1 1gt
 nnoremap <leader>2 2gt
 nnoremap <leader>3 3gt
