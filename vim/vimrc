@@ -5,6 +5,7 @@ if exists('python3_support')
     py3 3
 endif
 
+" Vundle plugins configuration {{{
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#begin()
 
@@ -40,17 +41,19 @@ Plugin 'vim-scripts/YankRing.vim'
 " Plugin 'solarnz/thrift.vim'
 " Plugin 'jtratner/vim-flavored-markdown'
 call vundle#end()
+" }}}
 
 set nocompatible
 filetype plugin indent on
 
+" NERDTree configuration {{{
 nnoremap <F2> :NERDTreeToggle<CR>
 nnoremap <F3> :TagbarToggle<CR>
 if has("win32unix")
     let g:NERDTreeDirArrows=0
     let g:NERDTreeWinSize=50
 endif
-
+" }}}
 
 " Display buffers and select
 " nmap <C-b> :buffers<CR>:buffer<Space>
@@ -113,6 +116,7 @@ set incsearch " ...but do highlight-as-I-type the search string
 " Make mouse work in tmux
 set mouse=a
 
+" Clipboard configurationn {{{
 if has('unnamedplus')
   " By default, Vim will not use the system clipboard when yanking/pasting to
   " the default register. This option makes Vim use the system default
@@ -127,25 +131,25 @@ else
   " Vim now also uses the selection system clipboard for default yank/paste.
   set clipboard+=unnamed
 endif
+" }}}
 
 " Grep a word under cursor in the current directory
 nnoremap gr :grep -Rw <cword> *<CR>
 set grepprg=grep\ -Rn
 
-" Remove trailing whitespaces
+" Remove trailing whitespaces ----------- {{{
 autocmd BufWrite * :call RemoveTrailingSpaces()
 function! RemoveTrailingSpaces()
     execute "normal mz"
     %s/\s\+$//ge
     execute "normal `z"
 endfunction
+" }}}
 
 " Open my vimrc in a split
 :nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Clipboard                               "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto word highlight ----------------- {{{
 " Highlight all instances of word under cursor, when idle.
 " Useful when studying strange source code.
 " Type z/ to toggle highlighting on/off.
@@ -168,20 +172,17 @@ function! AutoHighlightToggle()
     return 1
   endif
 endfunction
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 ctrlp                                   "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ctrlp ------------------ {{{
 let g:ctrlp_map = '<leader>p'
 " Jump to already opened window only if it is in the current tab.
 let g:ctrlp_switch_buffer = 'et'
 nnoremap <c-b> :CtrlPBuffer<cr>
 nnoremap <leader>b :CtrlPBuffer<cr>
+" }}}
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 Airline                                 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline -------------------- {{{
 let g:airline_theme = 'molokai'
 let g:airline_detect_spell = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -203,20 +204,16 @@ nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
 nnoremap <leader>n :tabnew<cr>
 nnoremap <leader>c :tabclose<cr>
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                 UltiSnips                               "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" UltiSnips --------------------- {{{
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<leader><tab>"
+" }}}
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                                yankring                                 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" Yankring configuration --------------------- {{{
 " let g:yankring_history_dir = '$HOME/tmp/vim'
 " this is so that single char deletes don't end up in the yankring
 let g:yankring_min_element_length = 2
@@ -232,10 +229,9 @@ endfunction
 
 "fix for yankring and neovim
 let g:yankring_clipboard_monitor=0
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               Color Scheme                              "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Color Scheme -------------- {{{
 syntax on
 colorscheme desert
 if has('gui_running')
@@ -249,10 +245,9 @@ if has('gui_running')
     " Start maximized
     set columns=999 lines=999
 endif
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               Cpp configuratin (YCM)                    "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" YouCompleteMe configuration ------------- {{{
 nnoremap <C-h> :A<CR>
 nnoremap <C-g> "fyiw:A<CR>/<C-r>f<CR>
 
@@ -270,15 +265,13 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 let g:ycm_key_list_select_completion=[]
 let g:ycm_key_list_previous_completion=[]
 
-
 if !has("win32unix")
     autocmd FileType c nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
     autocmd FileType cpp nnoremap <buffer> <silent> <C-]> :YcmCompleter GoTo<CR>
 endif
+" }}}
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                               Python mode                               "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Python mode -------------- {{{
 " Activate rope
 " Keys:
 " K             Show python docs
@@ -326,12 +319,13 @@ let g:pymode_run_key = '<leader>R'
 
 " Use longer long line warning for pep8
 let g:pymode_lint_options_pep8 = {'max_line_length': 120}
+" }}}
 
 " Auto close preview window after completion is done
 autocmd CompleteDone * pclose
 
 " Do not fold by default
-set nofoldenable
+set foldmethod=syntax
 
 if has("win32unix")
     " Block cursor in cygwin
