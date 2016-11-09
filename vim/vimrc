@@ -21,6 +21,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'klen/python-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-dispatch'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
@@ -325,6 +326,7 @@ let g:pymode_lint_options_pep8 = {'max_line_length': 120}
 autocmd CompleteDone * pclose
 
 " Do not fold by default
+set nofoldenable
 set foldmethod=syntax
 
 if has("win32unix")
