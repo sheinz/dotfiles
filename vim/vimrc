@@ -31,10 +31,10 @@ Plugin 'honza/vim-snippets'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
 Plugin 'nfvs/vim-perforce'
 Plugin 'vim-scripts/a.vim'
-Plugin 'vim-scripts/YankRing.vim'
+" Plugin 'vim-scripts/YankRing.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
@@ -47,9 +47,14 @@ call vundle#end()
 set nocompatible
 filetype plugin indent on
 
+set encoding=utf-8
+
+" Change leader key and specify timeout for it
+let mapleader=","
+
 " NERDTree configuration {{{
-nnoremap <F2> :NERDTreeToggle<CR>
-nnoremap <F3> :TagbarToggle<CR>
+nnoremap <leader>f :NERDTreeToggle<CR>
+nnoremap <leader>g :TagbarToggle<CR>
 if has("win32unix")
     let g:NERDTreeDirArrows=0
     let g:NERDTreeWinSize=50
@@ -80,8 +85,6 @@ set laststatus=2
 set relativenumber
 set number
 
-" Change leader key and specify timeout for it
-let mapleader=","
 set timeoutlen=500
 
 " Show trailing whitepace
@@ -91,6 +94,7 @@ set timeoutlen=500
 
 " Check spelling for English
 command CheckSpell setlocal spell! spelllang=en_us
+nnoremap <leader>s :CheckSpell<CR>
 
 " Look for tag def in a "tags" file in the dir of the current file, then for
 " that same file in every folder above the folder of the current file, until the
@@ -137,6 +141,10 @@ endif
 " Grep a word under cursor in the current directory
 nnoremap gr :grep -Rw <cword> *<CR>
 set grepprg=grep\ -Rn
+
+" Fugitive mappings ---------------- {{{
+nnoremap <leader>gs :Gstatus<CR>
+" }}}
 
 " Remove trailing whitespaces ----------- {{{
 autocmd BufWrite * :call RemoveTrailingSpaces()
@@ -203,8 +211,9 @@ nnoremap <leader>6 6gt
 nnoremap <leader>7 7gt
 nnoremap <leader>8 8gt
 nnoremap <leader>9 9gt
-nnoremap <leader>n :tabnew<cr>
-nnoremap <leader>c :tabclose<cr>
+nnoremap <leader>c :tabnew<cr>
+nnoremap <leader>n :tabnext<cr>
+nnoremap <leader>x :tabclose<cr>
 " }}}
 
 " UltiSnips --------------------- {{{
@@ -252,9 +261,12 @@ endif
 nnoremap <C-h> :A<CR>
 nnoremap <C-g> "fyiw:A<CR>/<C-r>f<CR>
 
+command Fix YcmCompleter FixIt<CR>
+
 " search path for source/header switching
 let g:alternateSearchPath = 'sfr:./private,sfr:..,../src,sfr:../include,sfr:../inc'
 
+let g:ycm_server_python_interpreter = '/usr/bin/python'
 nnoremap <leader>d :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>k :YcmCompleter GetDoc<CR>
 nnoremap <leader>t :YcmCompleter GetType<CR>
