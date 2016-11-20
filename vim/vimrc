@@ -31,10 +31,10 @@ Plugin 'honza/vim-snippets'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'tpope/vim-surround'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'jiangmiao/auto-pairs'
+" Plugin 'jiangmiao/auto-pairs'
 Plugin 'nfvs/vim-perforce'
 Plugin 'vim-scripts/a.vim'
-Plugin 'vim-scripts/YankRing.vim'
+" Plugin 'vim-scripts/YankRing.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
@@ -47,8 +47,11 @@ call vundle#end()
 set nocompatible
 filetype plugin indent on
 
+" Change leader key and specify timeout for it
+let mapleader=","
+
 " NERDTree configuration {{{
-nnoremap <F2> :NERDTreeToggle<CR>
+nnoremap <leader>f :NERDTreeToggle<CR>
 nnoremap <F3> :TagbarToggle<CR>
 if has("win32unix")
     let g:NERDTreeDirArrows=0
@@ -80,8 +83,6 @@ set laststatus=2
 set relativenumber
 set number
 
-" Change leader key and specify timeout for it
-let mapleader=","
 set timeoutlen=500
 
 " Show trailing whitepace
