@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<root>
+  <item>
+    <name>Copy with Ctrl-C</name>
+    <identifier>private.use_ctrl_c_for_copy</identifier>
+    <not>TERMINAL</not>
+    <autogen>
+        __KeyToKey__
+        KeyCode::C, ModifierFlag::CONTROL_L,
+        KeyCode::C, ModifierFlag::COMMAND_L
+    </autogen>
+  </item>
+  <item>
+    <name>Cut with Ctrl-X</name>
+    <identifier>private.use_ctrl_x_for_cut</identifier>
+    <not>TERMINAL</not>
+    <autogen>
+        __KeyToKey__
+        KeyCode::X, ModifierFlag::CONTROL_L,
+        KeyCode::X, ModifierFlag::COMMAND_L
+    </autogen>
+  </item>
+  <item>
+    <name>Paste with Ctrl-V</name>
+    <identifier>private.use_ctrl_v_for_paste</identifier>
+    <autogen>
+        __KeyToKey__
+        KeyCode::V, ModifierFlag::CONTROL_L,
+        KeyCode::V, ModifierFlag::COMMAND_L
+    </autogen>
+  </item>
+</root>

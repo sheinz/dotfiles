@@ -139,6 +139,10 @@ endif
 nnoremap gr :grep -Rw <cword> *<CR>
 set grepprg=grep\ -Rn
 
+" Fugitive mappings ---------------- {{{
+nnoremap <leader>gs :Gstatus<CR>
+" }}}
+
 " Remove trailing whitespaces ----------- {{{
 autocmd BufWrite * :call RemoveTrailingSpaces()
 function! RemoveTrailingSpaces()
