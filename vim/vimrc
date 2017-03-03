@@ -46,6 +46,7 @@ call vundle#end()
 
 set nocompatible
 filetype plugin indent on
+set rtp+=~/dotfiles/vim-runtime/
 
 set encoding=utf-8
 
@@ -221,6 +222,7 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsListSnippets = "<leader><tab>"
+let g:UltiSnipsSnippetsDir="~/dotfiles/vim-runtime/UltiSnips"
 " }}}
 
 " Yankring configuration --------------------- {{{

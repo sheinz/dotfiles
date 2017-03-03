@@ -1,0 +1,19 @@
+
+# Import set_trace from pdb
+snippet pdb "from pdb import set_trace as bp" b
+from pdb import set_trace as bp
+endsnippet
+
+# set brake point
+snippet b "bp()" b
+bp()
+endsnippet
+
+snippet cl "class" b
+class ${1:MyClass}(${2:object}):
+	def __init__(self):
+		${0:pass}
+endsnippet
+
+
+
