@@ -264,7 +264,7 @@ endif
 
 " YouCompleteMe configuration ------------- {{{
 nnoremap <C-h> :A<CR>
-nnoremap <C-g> "fyiw:A<CR>/<C-r>f<CR>
+nnoremap <C-g> "fyiw:A<CR>/\<<C-r>f\><CR>zz
 
 command Fix YcmCompleter FixIt<CR>
 
