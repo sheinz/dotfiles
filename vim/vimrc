@@ -37,6 +37,7 @@ Plugin 'vim-scripts/a.vim'
 " Plugin 'vim-scripts/YankRing.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'vim-scripts/Conque-GDB'
 
 " This plugin requires 'livedown'
 " To install it: `npm install -g livedown`
@@ -151,7 +152,7 @@ nnoremap gr :grep -Rw <cword> *<CR>
 set grepprg=grep\ -Rn
 
 " Fugitive mappings ---------------- {{{
-nnoremap <leader>gs :Gstatus<CR>
+" nnoremap <leader>gs :Gstatus<CR>
 " }}}
 
 " Remove trailing whitespaces ----------- {{{
@@ -265,6 +266,9 @@ if has('gui_running')
     set columns=999 lines=999
 endif
 " }}}
+
+" ConqueGdb
+let g:ConqueGdb_Leader = '<Leader>g'
 
 " YouCompleteMe configuration ------------- {{{
 nnoremap <C-h> :A<CR>
