@@ -74,7 +74,11 @@ nnoremap ]d :bnext<CR>:bdelete #<CR>
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set colorcolumn=80
+
+" set colorcolumn=80
+" Highlight a 81th character
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
 
 " Make backspace act normaly
 set backspace=indent,eol,start
