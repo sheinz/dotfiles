@@ -1,0 +1,5 @@
+powerline-daemon -q
+prompt off
+source "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+. "${HOME}/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh"
+
