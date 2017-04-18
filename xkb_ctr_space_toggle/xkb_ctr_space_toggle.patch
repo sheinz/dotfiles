@@ -1,0 +1,60 @@
+--- /usr/share/X11/xkb/symbols/group	2017-04-15 23:43:42.986694822 +0300
++++ /usr/share/X11/xkb/symbols/group	2017-04-16 00:28:07.240048638 +0300
+@@ -424,6 +424,15 @@
+     };
+ };
+
++// ctrl + space toggles groups
++partial modifier_keys
++xkb_symbols "ctrl_space_toggle" {
++    key <SPCE> {
++        type[Group1]="PC_CONTROL_LEVEL2",
++        symbols[Group1] = [ space, ISO_Next_Group ]
++    };
++};
++
+ // Pressing the Scroll Lock key switches to the next group,
+ partial modifier_keys
+ xkb_symbols "sclk_toggle" {
+--- /usr/share/X11/xkb/rules/evdev	2017-04-16 00:20:38.983378520 +0300
++++ /usr/share/X11/xkb/rules/evdev	2017-04-16 00:21:15.890045476 +0300
+@@ -989,6 +989,7 @@
+   grp:win_menu_switch	=	+group(win_menu_switch)
+   grp:alt_caps_toggle   =       +group(alt_caps_toggle)
+   grp:alt_space_toggle	=	+group(alt_space_toggle)
++  grp:ctrl_space_toggle	=	+group(ctrl_space_toggle)
+   grp:menu_toggle	=	+group(menu_toggle)
+   grp:lwin_toggle	=	+group(lwin_toggle)
+   grp:rwin_toggle	=	+group(rwin_toggle)
+--- /usr/share/X11/xkb/rules/evdev.lst	2017-04-16 00:21:29.636712241 +0300
++++ /usr/share/X11/xkb/rules/evdev.lst	2017-04-16 00:21:58.240045800 +0300
+@@ -715,6 +715,7 @@
+   grp:alt_shift_toggle Alt+Shift
+   grp:lalt_lshift_toggle Left Alt+Left Shift
+   grp:alt_space_toggle Alt+Space
++  grp:ctrl_space_toggle Ctrl+Space
+   grp:menu_toggle      Menu
+   grp:lwin_toggle      Left Win
+   grp:win_space_toggle Win Key+Space
+--- /usr/share/X11/xkb/rules/evdev.xml	2017-04-16 00:22:21.900045984 +0300
++++ /usr/share/X11/xkb/rules/evdev.xml	2017-04-16 00:22:49.533379530 +0300
+@@ -5809,6 +5809,12 @@
+       </option>
+       <option>
+         <configItem>
++          <name>grp:ctrl_space_toggle</name>
++          <description>Ctrl+Space</description>
++        </configItem>
++      </option>
++      <option>
++        <configItem>
+           <name>grp:menu_toggle</name>
+           <description>Menu</description>
+         </configItem>
+@@ -6843,4 +6849,4 @@
+       </option>
+     </group>
+   </optionList>
+-</xkbConfigRegistry>
+\ No newline at end of file
++</xkbConfigRegistry>
