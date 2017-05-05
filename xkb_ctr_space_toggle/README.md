@@ -6,7 +6,7 @@ The following patch adds option 'grp:ctrl_space_toggle'
 
 ```
 cd /
-sudo patch -p0 ~/xkb_ctr_space_toggle.patch
+sudo patch -p0 < ~/xkb_ctr_space_toggle.patch
 ```
 
 To use this option add `grp:ctrl_space_toggle` to xkb configuration.
