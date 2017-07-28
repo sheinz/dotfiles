@@ -166,7 +166,10 @@ endfunction
 " }}}
 
 " Open my vimrc in a split
-:nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+
+nnoremap <leader>aa :A<cr>
+nnoremap <leader>av :AV<cr>
 
 " Auto word highlight ----------------- {{{
 " Highlight all instances of word under cursor, when idle.

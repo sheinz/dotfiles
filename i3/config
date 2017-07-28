@@ -218,11 +218,12 @@ mode "$mode_launcher" {
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
-set $lock_cmd 	         i3lock -t -i ${HOME}/Pictures/lock.png
+set $lock_cmd 	         i3lock -t -i ${HOME}/Pictures/.lock.png
 bindsym Menu exec --no-startup-id $lock_cmd
 bindsym Pause exec --no-startup-id $lock_cmd
 
 bindsym $mod+n exec --no-startup-id ~/.config/i3/empty_workspace.sh
+bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/empty_workspace.sh move
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -250,4 +251,7 @@ exec --no-startup-id i3-msg 'workspace "2:Tmux"; exec /usr/bin/gnome-terminal -e
 exec --no-startup-id i3-msg 'workspace "3:Mail"; exec /usr/bin/evolution'
 exec /usr/bin/ghetto-skype
 exec --no-startup-id /usr/bin/xfce4-panel -d
+exec --no-startup-id xautolock -time 5 -locker '$lock_cmd' -notify 15 \
+    -notifier "notify-send -i system-lock-screen -t 15000 -- 'Locking screen in 15 seconds'" &
+
 
