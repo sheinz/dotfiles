@@ -43,6 +43,7 @@ Plugin 'vim-scripts/Conque-GDB'
 " To install it: `npm install -g livedown`
 Plugin 'shime/vim-livedown'
 Plugin 'morhetz/gruvbox'
+Plugin 'mileszs/ack.vim'
 call vundle#end()
 " }}}
 
@@ -51,9 +52,6 @@ filetype plugin indent on
 set rtp+=~/dotfiles/vim-runtime/
 
 set encoding=utf-8
-
-" Change leader key and specify timeout for it
-let mapleader=","
 
 " Change leader key and specify timeout for it
 let mapleader=","
@@ -148,9 +146,31 @@ else
 endif
 " }}}
 
+" Faster grepping with 'The Silver Searcher' (ag)
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+else
+    set grepprg=grep\ -Rnw
+endif
+
 " Grep a word under cursor in the current directory
-nnoremap gr :grep -Rw <cword> *<CR>
-set grepprg=grep\ -Rn
+" nnoremap gr :grep <cword> *<CR>
+nnoremap gr :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap K :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
+vnoremap K y:Ack! "<C-R>""<CR>
+
+" Custom Ag command
+command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+" use Ag with ack.vim
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Fugitive mappings ---------------- {{{
 " nnoremap <leader>gs :Gstatus<CR>
