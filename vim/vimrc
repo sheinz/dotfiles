@@ -107,7 +107,11 @@ nnoremap <leader>s :CheckSpell<CR>
 set tags=./tags;/
 
 " Generate tags for the current project
-command GenCtags !ctags -R --exclude=".git"
+command GenCtags !ctags -R --language-corce=C++ --exclude=".git"
+
+" nnoremap <leader>T :tag "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <leader>T :tag <C-R><C-W><CR>
+vnoremap <leader>T y:tag <C-R>"<CR>
 
 " Save file with sudo access rights
 command SudoSave w !sudo tee %
@@ -304,7 +308,7 @@ let g:ConqueGdb_Leader = '<Leader>g'
 
 " YouCompleteMe configuration ------------- {{{
 nnoremap <C-h> :A<CR>
-nnoremap <C-g> "fyiw:A<CR>/\<<C-r>f\><CR>zz
+nnoremap <C-g> "fyiw:A<CR>/\C\<<C-r>f\><CR>zz
 
 command Fix YcmCompleter FixIt<CR>
 
