@@ -107,7 +107,7 @@ nnoremap <leader>s :CheckSpell<CR>
 set tags=./tags;/
 
 " Generate tags for the current project
-command GenCtags !ctags -R --language-corce=C++ --exclude=".git"
+command GenCtags !ctags -R --language-force=C++ --exclude=".git"
 
 " nnoremap <leader>T :tag "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap <leader>T :tag <C-R><C-W><CR>
