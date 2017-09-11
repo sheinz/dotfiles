@@ -36,6 +36,9 @@ bindsym $mod+Return exec gnome-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# remove windows titelbar
+for_window [class="^.*"] border pixel 1
+
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
 
@@ -108,10 +111,10 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # workspaces
-set $workspace_1 "1:Web"
-set $workspace_2 "2:Tmux"
-set $workspace_3 "3:Mail"
-set $workspace_9 "9:Msg"
+set $workspace_1 number 1 Web
+set $workspace_2 number 2 Tmux
+set $workspace_3 number 3 Mail
+set $workspace_9 number 9 Msg
 
 # assign workspaces to monitors
 workspace $workspace_1 output HDMI2
@@ -121,28 +124,28 @@ workspace $workspace_9 output VGA1
 
 
 # switch to workspace
-bindsym $mod+1 workspace $workspace_1
-bindsym $mod+2 workspace $workspace_2
-bindsym $mod+3 workspace $workspace_3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace $workspace_9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace number 1 Web
+bindsym $mod+2 workspace number 2 Tmux
+bindsym $mod+3 workspace number 3 Mail
+bindsym $mod+4 workspace number 4
+bindsym $mod+5 workspace number 5
+bindsym $mod+6 workspace number 6
+bindsym $mod+7 workspace number 7
+bindsym $mod+8 workspace number 8
+bindsym $mod+9 workspace number 9 Msg
+bindsym $mod+0 workspace number 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $workspace_1; workspace $workspace_1
-bindsym $mod+Shift+2 move container to workspace $workspace_2; workspace $workspace_2
-bindsym $mod+Shift+3 move container to workspace $workspace_3; workspace $workspace_3
-bindsym $mod+Shift+4 move container to workspace 4; workspace 4
-bindsym $mod+Shift+5 move container to workspace 5; workspace 5
-bindsym $mod+Shift+6 move container to workspace 6; workspace 6
-bindsym $mod+Shift+7 move container to workspace 7; workspace 7
-bindsym $mod+Shift+8 move container to workspace 8; workspace 8
-bindsym $mod+Shift+9 move container to workspace $workspace_9; workspace $workspace_9
-bindsym $mod+Shift+0 move container to workspace 10; workspace 10
+bindsym $mod+Shift+1 move container to workspace number 1; workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2; workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3; workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4; workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5; workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6; workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7; workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8; workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9; workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10; workspace number  10
 
 
 # reload the configuration file
@@ -221,9 +224,15 @@ bindsym $mod+minus scratchpad show
 set $lock_cmd 	         i3lock -t -i ${HOME}/Pictures/.lock.png
 bindsym Menu exec --no-startup-id $lock_cmd
 bindsym Pause exec --no-startup-id $lock_cmd
+bindsym XF86ScreenSaver exec --no-startup-id $lock_cmd
 
 bindsym $mod+n exec --no-startup-id ~/.config/i3/empty_workspace.sh
 bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/empty_workspace.sh move
+
+# bindsym XF86Display exec --no-startup-id ~/.screenlayout/toggle.sh
+bindsym XF86Display exec --no-startup-id /usr/bin/mons -m
+
+bindsym $mod+comma exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
@@ -237,21 +246,23 @@ bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2 # decrease 
 # Screenshot
 bindsym --release Print exec "scrot -s -e 'mv $f ~/Pictures/'"
 
-for_window [title="this_is_chrome_windows_number_1"] move workspace $workspace_1
-for_window [class="FreeCAD" title="Formula editor"] floating enable
-assign [class="Ghetto Skype"] $workspace_9
-assign [class="Cutegram"] $workspace_9
-assign [class="TelegramDesktop"] $workspace_9
+for_window [title="this_is_chrome_windows_number_1"] move workspace number 1
+for_window [class="Freecad" title="Formula editor"] floating enable
+assign [class="Ghetto Skype"] workspace 9 Msg
+assign [class="Cutegram"] workspace 9 Msg
+assign [class="TelegramDesktop"] workspace 9 Msg
 
 
 exec --no-startup-id compton
+exec --no-startup-id udiskie
 exec_always "feh --bg-scale /usr/share/backgrounds/gnome/Godafoss_Iceland.jpg"
-exec --no-startup-id i3-msg 'workspace "1:Web"; exec /usr/bin/chromium file:///this_is_chrome_windows_number_1'
-exec --no-startup-id i3-msg 'workspace "2:Tmux"; exec /usr/bin/gnome-terminal -e tmux'
-exec --no-startup-id i3-msg 'workspace "3:Mail"; exec /usr/bin/evolution'
-exec /usr/bin/ghetto-skype
+exec --no-startup-id i3-msg 'workspace $workspace_1; exec /usr/bin/chromium file:///this_is_chrome_windows_number_1'
+exec --no-startup-id i3-msg 'workspace $workspace_2; exec /usr/bin/gnome-terminal -e tmux'
+exec --no-startup-id i3-msg 'workspace $workspace_3; exec /usr/bin/evolution'
 exec --no-startup-id /usr/bin/xfce4-panel -d
-exec --no-startup-id xautolock -time 5 -locker '$lock_cmd' -notify 15 \
+
+exec --no-startup-id xautolock -detectsleep -corners -000 -time 5 -locker '$lock_cmd' -notify 15 \
     -notifier "notify-send -i system-lock-screen -t 15000 -- 'Locking screen in 15 seconds'" &
 
+exec --no-startup-id /usr/bin/caffeine
 
