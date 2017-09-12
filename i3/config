@@ -117,10 +117,10 @@ set $workspace_3 number 3 Mail
 set $workspace_9 number 9 Msg
 
 # assign workspaces to monitors
-workspace $workspace_1 output HDMI2
-workspace $workspace_2 output HDMI1
-workspace $workspace_3 output VGA1
-workspace $workspace_9 output VGA1
+workspace "1 Web" output HDMI2
+workspace "2 Tmux" output HDMI1
+workspace "3 Mail" output VGA1
+workspace "9 Msg" output VGA1
 
 
 # switch to workspace
@@ -248,6 +248,7 @@ bindsym --release Print exec "scrot -s -e 'mv $f ~/Pictures/'"
 
 for_window [title="this_is_chrome_windows_number_1"] move workspace number 1
 for_window [class="Freecad" title="Formula editor"] floating enable
+for_window [window_role="python-scratchpad"] move scratchpad
 assign [class="Ghetto Skype"] workspace 9 Msg
 assign [class="Cutegram"] workspace 9 Msg
 assign [class="TelegramDesktop"] workspace 9 Msg
@@ -257,10 +258,11 @@ exec --no-startup-id compton
 exec --no-startup-id udiskie
 exec_always "feh --bg-scale /usr/share/backgrounds/gnome/Godafoss_Iceland.jpg"
 exec --no-startup-id i3-msg 'workspace $workspace_1; exec /usr/bin/chromium file:///this_is_chrome_windows_number_1'
-exec --no-startup-id i3-msg 'workspace $workspace_2; exec /usr/bin/gnome-terminal -e tmux'
+exec --no-startup-id i3-msg 'workspace $workspace_2; exec /usr/bin/gnome-terminal -- tmux'
 exec --no-startup-id i3-msg 'workspace $workspace_3; exec /usr/bin/evolution'
+exec --no-startup-id i3-msg 'exec /usr/bin/gnome-terminal --role="python-scratchpad" -- ipython'
 exec --no-startup-id /usr/bin/xfce4-panel -d
-
+exec --no-startup-id /usr/bin/xfce4-power-manager
 exec --no-startup-id xautolock -detectsleep -corners -000 -time 5 -locker '$lock_cmd' -notify 15 \
     -notifier "notify-send -i system-lock-screen -t 15000 -- 'Locking screen in 15 seconds'" &
 
