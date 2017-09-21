@@ -239,14 +239,20 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
+
+bindsym XF86AudioNext exec --no-startup-id cmus-remote -n
+bindsym XF86AudioPrev exec --no-startup-id cmus-remote -r
+bindsym XF86AudioPlay exec --no-startup-id cmus-remote -u
+
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2 # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2 # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 2 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 2 # decrease screen brightness
 
 # Screenshot
 bindsym --release Print exec "scrot -s -e 'mv $f ~/Pictures/'"
+bindsym --release XF86WebCam exec "scrot -s -e 'mv $f ~/Pictures/'"
 
-for_window [title="this_is_chrome_windows_number_1"] move workspace number 1
+for_window [title="this_is_chrome_windows_number_1"] move workspace 1 Web
 for_window [class="Freecad" title="Formula editor"] floating enable
 for_window [window_role="python-scratchpad"] move scratchpad
 assign [class="Ghetto Skype"] workspace 9 Msg
@@ -256,15 +262,21 @@ assign [class="TelegramDesktop"] workspace 9 Msg
 
 exec --no-startup-id compton
 exec --no-startup-id udiskie
+# exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
 exec_always "feh --bg-scale /usr/share/backgrounds/gnome/Godafoss_Iceland.jpg"
 exec --no-startup-id i3-msg 'workspace $workspace_1; exec /usr/bin/chromium file:///this_is_chrome_windows_number_1'
 exec --no-startup-id i3-msg 'workspace $workspace_2; exec /usr/bin/gnome-terminal -- tmux'
 exec --no-startup-id i3-msg 'workspace $workspace_3; exec /usr/bin/evolution'
 exec --no-startup-id i3-msg 'exec /usr/bin/gnome-terminal --role="python-scratchpad" -- ipython'
 exec --no-startup-id /usr/bin/xfce4-panel -d
-exec --no-startup-id /usr/bin/xfce4-power-manager
-exec --no-startup-id xautolock -detectsleep -corners -000 -time 5 -locker '$lock_cmd' -notify 15 \
+
+exec --no-startup-id xautolock -detectsleep -corners -000 -time 5 -locker '~/.config/i3/lock.sh' -notify 15 \
     -notifier "notify-send -i system-lock-screen -t 15000 -- 'Locking screen in 15 seconds'" &
 
 exec --no-startup-id /usr/bin/caffeine
+# exec --no-startup-id /usr/bin/mons -a
+exec --no-startup-id /usr/bin/redshift-gtk
+
+
 

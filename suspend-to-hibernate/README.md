@@ -19,3 +19,7 @@ sudo systemctl enable suspend-to-hibernate.service
 sudo cp suspend-to-hibernate.sh /usr/local/bin/suspend-to-hibernate.sh
 sudo chmod +x /usr/local/bin/suspend-to-hibernate.sh
 ```
+
+# Tested
+
+Only tested on Thinkpad x230 wtih Arch Linux
