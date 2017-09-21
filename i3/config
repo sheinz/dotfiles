@@ -221,10 +221,9 @@ mode "$mode_launcher" {
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
-set $lock_cmd 	         i3lock -t -i ${HOME}/Pictures/.lock.png
-bindsym Menu exec --no-startup-id $lock_cmd
-bindsym Pause exec --no-startup-id $lock_cmd
-bindsym XF86ScreenSaver exec --no-startup-id $lock_cmd
+bindsym Menu exec --no-startup-id ~/.config/i3/lock.sh
+bindsym Pause exec --no-startup-id ~/.config/i3/lock.sh
+bindsym XF86ScreenSaver exec --no-startup-id ~/.config/i3/lock.sh
 
 bindsym $mod+n exec --no-startup-id ~/.config/i3/empty_workspace.sh
 bindsym $mod+Shift+n exec --no-startup-id ~/.config/i3/empty_workspace.sh move
