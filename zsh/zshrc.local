@@ -1,5 +1,23 @@
 powerline-daemon -q
 prompt off
 source "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-source "/usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh"
+source "/usr/lib/python3.7/site-packages/powerline/bindings/zsh/powerline.zsh"
+source "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
+google() {
+    search=""
+    echo "Googling: $@"
+    for term in $@; do
+        search="$search%20$term"
+    done
+    xdg-open "http://www.google.com/search?q=$search"
+}
+
+# Enable Ctrl-x-e to edit command line
+autoload -U edit-command-line
+# # Emacs style
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+
+eval `dircolors /home/yskriyka/.dir_colors/dircolors`

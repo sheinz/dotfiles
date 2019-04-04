@@ -18,7 +18,7 @@ if !has("win32unix")
     endif
 endif
 Plugin 'scrooloose/nerdtree'
-Plugin 'klen/python-mode'
+Plugin 'python-mode/python-mode'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-dispatch'
@@ -36,7 +36,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'nfvs/vim-perforce'
 Plugin 'vim-scripts/a.vim'
 " Plugin 'vim-scripts/YankRing.vim'
-Plugin 'godlygeek/tabular'
+"Plugin 'godlygeek/tabular'
+Plugin 'dhruvasagar/vim-table-mode'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'vim-scripts/Conque-GDB'
 
@@ -45,6 +46,8 @@ Plugin 'vim-scripts/Conque-GDB'
 Plugin 'shime/vim-livedown'
 Plugin 'morhetz/gruvbox'
 Plugin 'mileszs/ack.vim'
+" Plugin 'scrooloose/vim-slumlord' " plantuml previewer
+Plugin 'aklt/plantuml-syntax'
 call vundle#end()
 " }}}
 
@@ -221,6 +224,16 @@ function! AutoHighlightToggle()
 endfunction
 " }}}
 
+nnoremap <leader>h :call HighlightCurrentWord()<cr>
+function! HighlightCurrentWord()
+    if &hlsearch
+        set nohlsearch
+    else
+        let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
+        set hlsearch
+    endif
+endfunction
+
 " ctrlp ------------------ {{{
 let g:ctrlp_map = '<leader>p'
 " Jump to already opened window only if it is in the current tab.
@@ -287,6 +300,7 @@ let g:gruvbox_italic=1
 set background=dark
 
 colorscheme gruvbox
+" use transparent background
 highlight Normal ctermbg=NONE guibg=NONE
 highlight NonText ctermbg=NONE guibg=NONE
 set termguicolors
@@ -356,7 +370,7 @@ let g:pymode_rope_completion = 1
 let g:pymode_rope_complete_on_dot = 0
 
 " Documentation
-let g:pymode_doc = 1
+let g:pymode_doc = 0
 let g:pymode_doc_key = 'K'
 
 " My custom bindings
